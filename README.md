@@ -2,12 +2,12 @@
 
 # PWD
 abc@c3r1s2 ~ % pwd
-/Users/abc
+/Users/abc@c3r1s2
 
 # ls -al
 abc@c3r1s2 ~ % ls -al
 total 56
-drwxr-x---+ 25 abc  abc    800 Apr  8 21:05 .
+drwxr-x---+ 25 abc@c3r1s2  abc@c3r1s2    800 Apr  8 21:05 .
 drwxr-xr-x  12 root            admin             384 Apr  8 13:24 ..
 ..
 ..
@@ -18,39 +18,39 @@ abc@c3r1s2 ~ % cd dumy
 abc@c3r1s2 dumy % 
 
 # touch - cat - cp - mv 
-alswnssldk4632@c3r1s2 dumy % touch sample.txt
-alswnssldk4632@c3r1s2 dumy % echo "Workstation Test" > sample.txt
-alswnssldk4632@c3r1s2 dumy % ls
+abc@c3r1s2 dumy % touch sample.txt
+abc@c3r1s2 dumy % echo "Workstation Test" > sample.txt
+abc@c3r1s2 dumy % ls
 sample.txt
 
-alswnssldk4632@c3r1s2 dumy % cat sample.txt 
+abc@c3r1s2 dumy % cat sample.txt 
 Workstation Test
 
-alswnssldk4632@c3r1s2 dumy % cp sample.txt backup.txt
-alswnssldk4632@c3r1s2 dumy % ls
+abc@c3r1s2 dumy % cp sample.txt backup.txt
+abc@c3r1s2 dumy % ls
 backup.txt	sample.txt
 
-alswnssldk4632@c3r1s2 dumy % mv backup.txt renamed.txt
-alswnssldk4632@c3r1s2 dumy % ls
+abc@c3r1s2 dumy % mv backup.txt renamed.txt
+abc@c3r1s2 dumy % ls
 renamed.txt	sample.txt
 
 
 # chmod 
-alswnssldk4632@c3r1s2 dumy % ls -l                 
+abc@c3r1s2 dumy % ls -l                 
 -rw-r--r--  1 alswnssldk4632  alswnssldk4632  17 Apr  8 21:18 renamed.txt
 -rw-r--r--  1 alswnssldk4632  alswnssldk4632  17 Apr  8 21:13 sample.txt
 
-alswnssldk4632@c3r1s2 dumy % chmod 755 renamed.txt
-alswnssldk4632@c3r1s2 dumy % ls -l 
+abc@c3r1s2 dumy % chmod 755 renamed.txt
+abc@c3r1s2 dumy % ls -l 
 -rwxr-xr-x  1 alswnssldk4632  alswnssldk4632  17 Apr  8 21:18 renamed.txt
 -rw-r--r--  1 alswnssldk4632  alswnssldk4632  17 Apr  8 21:13 sample.txt
 
 # docker -v
-alswnssldk4632@c3r1s2 ~ % docker --version 
+abc@c3r1s2 ~ % docker --version 
 Docker version 28.5.2, build ecc6942
 
 # docker run hello-world
-alswnssldk4632@c3r1s2 ~ % docker run hello-world 
+abc@c3r1s2 ~ % docker run hello-world 
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 4f55086f7dd0: Pull complete 
@@ -62,7 +62,7 @@ This message shows that your installation appears to be working correctly.
 --
 
 # docker pull ubuntu
-alswnssldk4632@c3r1s2 ~ % docker pull ubuntu
+abc@c3r1s2 ~ % docker pull ubuntu
 Using default tag: latest
 latest: Pulling from library/ubuntu
 ---------: Pull complete 
@@ -71,10 +71,10 @@ Status: Downloaded newer image for ubuntu:latest
 docker.io/library/ubuntu:latest
 
 # docker -it 
-alswnssldk4632@c3r1s2 ~ % docker ps
+abc@c3r1s2 ~ % docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-alswnssldk4632@c3r1s2 ~ % docker run -it --name my-ubuntu ubuntu bash 
+abc@c3r1s2 ~ % docker run -it --name my-ubuntu ubuntu bash 
 root@819a343a7d89:/# ls
 bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 root@819a343a7d89:/# exit 
