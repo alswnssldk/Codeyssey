@@ -111,3 +111,39 @@ exit
 # git ssh / ssh 키만들고 확인 
 <img width="649" height="44" alt="git_ssh_log" src="https://github.com/user-attachments/assets/2e70bdc3-eb23-4533-ac87-b29de11bce7d" />
 
+# 트러블 슈팅
+
+1. Docker logs가 공백 로그만 반환
+
+OS = imac
+Docker version 28.5.2
+img OS = 우분투
+
+1-2. Testing
+
+1-2-1. 컨테이너 내부 프로세스가 죽었는가? -> docker ps 확인 결과 정상 구동 중
+
+1-2-2. OS별 문제인가? -> alpine os 문제 없음을 확인
+
+1-2-3. 로그는 어디에 있는가? -> 컨테이너 내부 접속(exec) 후 확인 결과, 로그가 access.log 파일에만 기록되고 있음을 확인.
+
+Root Cause: 도커 데몬은 해당 OS의 PID 1번 프로세스가 뱉는 표준출력과 에러출력만 그대로 가져와서 출력 단 해당 ubuntu는 표준출력과 에러출력을 access.log 및 에러 로그 파일에 저장중 이기에 dockerfile 이미지 설정 단계에서 "RUN ln -sf /dev/stdout /var/log/app/access.log" access파일을 pid1번 표준출력으로 심볼릭을 걸어줌 error 로그도 동일하게 적용
+
+
+2. Docker의 바인드 마운트시 파일 인식 실패
+
+OS = imac
+Docker version 28.5.2
+img OS = 우분투
+
+2-2. Testing
+
+2-2-1. 파일이 실제로 존재하는가? -> 로컬 환경에서 그랩또는 ls를 통해 파일의 확장명과 존재 유무 확인
+
+2-2-2. dockerfile 단계에서 COPY로 미리 파일을 넣은게 문제인가? -> 삭제후 재시도 동일한 문제 발생
+
+2-2-3. 해당 디렉토리 구조가 잘못되었는가? -> 추가적인 디렉토리 없음 
+
+2-2-4. docker는 해당 디렉토리를 인식할수 없는가? -> 디렉토리 권한 확인시 문제없음 다만 imac의 디렉토리 보안규정확인
+
+Root Cause: imac 특유의 home 디렉토리는 보안 규정에 따라 docker가 인식이 불가능한 경로였음 본인은 리눅스마냥 그냥 home에 디렉토리를 만들고 사용했음 그렇기에 이미지는 만들수있고 런까지 돌릴수있지만 파일 인식불가 로컬 디렉토리를 usr/ 로 이동후 재시도 -> 성공
